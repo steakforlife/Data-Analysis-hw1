@@ -1,4 +1,17 @@
 # Data-Analysis-hw1
+## import library
+```
+import numpy as np
+import scipy as sp
+import pandas as pd
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+import nltk
+
+import os
+```
 ## 第一小題 算出最多評論的次數與評分的平均值
 ### code
 ```
