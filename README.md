@@ -14,7 +14,7 @@ import os
 ```
 ## 第一小題 算出最多評論的次數與評分的平均值
 ### code
-```
+```python
 review_count=pd.DataFrame(pd_data,columns=['UserId','ProfileName','Score','Score count'])
 review_count=review_count.sort_values(by=["ProfileName"])
 review_count=review_count.groupby(['ProfileName','UserId']).agg({'Score count':'sum',
@@ -29,7 +29,7 @@ count_result=pd.DataFrame(review_count,columns=['Score count','Score mean'])
 
 ## 第二小題 繪出最多筆評論使用者的分數分布
 ### code
-```
+```python
 #print(pd_data.loc[pd_data['ProfileName']=='c2'])
 reviewer_data=pd_data.loc[pd_data['ProfileName']=='c2']
 reviewer_data=reviewer_data.groupby(['Score']).agg({'Score count':'sum'}).reset_index()
@@ -44,7 +44,7 @@ ax=sns.barplot(x='Score',y='Score count',data=tips)
 
 ## 第三小題 轉換時間至日期並繪圖
 ### code
-```
+```python
 #No.3
 #transfer time to date
 #pd.to_datetime(1490195805, unit='s')
@@ -63,7 +63,7 @@ ax=sns.barplot(x='year',y='Score count',data=tips)
 
 ## 第四小題 plot a heat map by applying seaborn
 ### code
-```
+```python
 heatmap_input=pd_data[['Id','HelpfulnessNumerator',
                     'HelpfulnessDenominator','Score','Time']].corr()
 
@@ -75,7 +75,7 @@ sns.heatmap(heatmap_input,xticklabels=heatmap_input.columns,
 
 ## 第五小題 plot the distribution of helpful percent (hist)
 ### code
-```
+```python
 help_percent=pd.DataFrame(pd_data,columns=['HelpfulnessNumerator',
                                             'HelpfulnessDenominator'])
 #num=help_percent['HelpfulnessNumerator']
@@ -91,7 +91,7 @@ help_percent['ratio'].hist()
 # Part2 FIFA球員的分析
 ## 1.分析球員慣用腳的比例
 ### code
-```
+```python
 prefer_foot=pd.DataFrame(fifa_data,columns=['Preferred Foot'])
 prefer_foot['count']=pd.Series(np.ones(len(fifa_data)),index=fifa_data.index)
 prefer_foot=prefer_foot.groupby(['Preferred Foot']).agg({'count':'sum'}).reset_index()
@@ -105,7 +105,7 @@ pie_chart=prefer_foot.plot.pie(y='count',figsize=(5,5),autopct='%1.0f%%')
 
 ## 2.各項數據之間的關係
 ### code
-```
+```python
 heatmap_input=sns.heatmap(fifa_data[['ID','Name','Overall','Wage',
 'Preferred Foot','Nationality','Jersey Number']].corr(),annot=True,cmap='Greens')
 heatmap_input
@@ -116,7 +116,7 @@ heatmap_input
 
 ## 3.球員最喜愛的球衣號碼
 ### code
-```
+```python
 favorite_jersey=pd.DataFrame(fifa_data,columns=['Jersey Number'])
 favorite_jersey['count']=pd.Series(np.ones(len(fifa_data)),index=fifa_data.index)
 favorite_jersey=favorite_jersey.groupby(['Jersey Number']).agg({'count':'sum'}).reset_index()
@@ -135,7 +135,7 @@ ax=sns.barplot(x='Jersey Number',y='count',data=sort)
 
 ## 4.國籍統計
 ### code
-```
+```python
 nationality=pd.DataFrame(fifa_data,columns=['Nationality'])
 nationality['count']=pd.Series(np.ones(len(fifa_data)),index=fifa_data.index)
 nationality=nationality.groupby(['Nationality']).agg({'count':'sum'})
